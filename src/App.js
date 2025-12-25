@@ -6,7 +6,7 @@ import {
 } from 'recharts';
 import './App.css';
 
-const API_BASE_URL = 'http://127.0.0.1:5000/api';
+const API_BASE_URL = 'https://insightflowkdsbackend.onrender.com/api';
 const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 
 function App() {
