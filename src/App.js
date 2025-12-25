@@ -39,18 +39,26 @@ function App() {
     <div className="App">
       <div className="dashboard-container">
         
-        {/* Modern Başlık */}
+        {/* Modern Başlık ve SOL ÜST LOGO */}
         <header className="main-header">
-          <div className="brand">
-            <h1>InsightFlow <span>KDS</span></h1>
-            <p>E-Ticaret Karar Destek Sistemi</p>
+          <div className="brand" style={{ display: 'flex', alignItems: 'center', gap: '15px' }}>
+            {/* LOGO BURAYA EKLENDİ - Dosya adın logo192.png (veya .jpg) ise kontrol et kanki */}
+            <img 
+              src="/logo192.png" 
+              alt="InsightFlow Logo" 
+              style={{ width: '50px', height: '50px', borderRadius: '12px', objectFit: 'cover' }} 
+            />
+            <div>
+              <h1>InsightFlow <span>KDS</span></h1>
+              <p>E-Ticaret Karar Destek Sistemi</p>
+            </div>
           </div>
           <div className="system-status">
             <span className="dot"></span> <span className="status-text">Sistem Çevrimiçi</span>
           </div>
         </header>
 
-        {/* 1. SATIR: KPI Kartları - Mobilde 1 veya 2 sütun olacak şekilde CSS'te ayarlanmalı */}
+        {/* 1. SATIR: KPI Kartları */}
         <section className="kpi-grid">
           <KpiCard title="Toplam Gelir" value={`₺${data?.kpis?.total_revenue?.toLocaleString('tr-TR')}`} color="#6366f1" icon="💰" />
           <KpiCard title="Sipariş Sayısı" value={data?.kpis?.total_orders?.toLocaleString('tr-TR')} color="#10b981" icon="📦" />
@@ -152,13 +160,13 @@ function App() {
           </div>
         </section>
 
-        {/* Protected by Volkan Ağbal İmza Alanı */}
+        {/* PROTECTED BY İMZASI GERİ GELDİ */}
         <footer className="dashboard-footer">
           <div className="footer-content">
-             <p className="footer-text">v1.0 | {data?.kpis?.total_orders} İşlem</p>
+             <p className="footer-text">v1.0 | {data?.kpis?.total_orders} İşlem İncelendi</p>
              <div className="protection-stamp">
                 <span className="shield-icon">🛡️</span>
-                <span><strong>Volkan Ağbal</strong></span>
+                <span>System Secured & <strong>Protected by Volkan Ağbal</strong></span>
              </div>
           </div>
         </footer>
