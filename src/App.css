@@ -12,7 +12,7 @@ body {
   font-family: 'Plus Jakarta Sans', sans-serif;
   background-color: var(--bg);
   color: var(--text);
-  overflow-x: hidden; /* Yatay kaymayı engeller */
+  overflow-x: hidden; 
 }
 
 .App { padding: 40px 20px; }
@@ -39,7 +39,7 @@ body {
 .chart-card h3, .glass-card h3 { margin: 0 0 25px 0; font-size: 18px; font-weight: 700; }
 
 /* TABLE */
-.table-wrapper { overflow-x: auto; } /* Tablo mobilde taşarsa kaydırılabilir olur */
+.table-wrapper { overflow-x: auto; } 
 .modern-table { width: 100%; border-collapse: collapse; font-size: 14px; min-width: 400px; }
 .modern-table th { text-align: left; color: #94a3b8; padding-bottom: 15px; text-transform: uppercase; font-size: 11px; letter-spacing: 1px; }
 .modern-table td { padding: 12px 0; border-bottom: 1px solid #f1f5f9; }
@@ -57,8 +57,8 @@ body {
 
 /* TABLET BOYUTU (992px altı) */
 @media (max-width: 992px) {
-  .kpi-grid { grid-template-columns: repeat(2, 1fr); } /* Kartlar 2x2 dizilir */
-  .charts-main-row, .charts-detail-row { grid-template-columns: 1fr; } /* Grafikler alt alta gelir */
+  .kpi-grid { grid-template-columns: repeat(2, 1fr); } 
+  .charts-main-row, .charts-detail-row { grid-template-columns: 1fr; } 
 }
 
 /* TELEFON BOYUTU (600px altı) */
@@ -68,14 +68,14 @@ body {
   .main-header { flex-direction: column; align-items: flex-start; gap: 20px; }
   .main-header h1 { font-size: 26px; }
   
-  .kpi-grid { grid-template-columns: 1fr; } /* Kartlar tek sıra olur */
+  .kpi-grid { grid-template-columns: 1fr; } 
   
   .kpi-card { padding: 20px; }
   .kpi-value { font-size: 20px; }
 
   .chart-card, .glass-card { padding: 20px; }
   
-  .hide-mobile { display: none; } /* Mobilde gereksiz detayları gizlemek için App.js'te bu sınıfı kullanabilirsin */
+  .hide-mobile { display: none; } 
   
   .footer-content { font-size: 12px; }
 }
