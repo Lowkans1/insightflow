@@ -6,7 +6,6 @@ import {
 } from 'recharts';
 import './App.css';
 
-// DÜZELTME: Render'ın atadığı hatalı yazımlı (insgiht) canlı URL buraya eklendi
 const API_BASE_URL = 'https://insgihtflowkdsbackend.onrender.com/api';
 const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 
@@ -47,11 +46,11 @@ function App() {
             <p>E-Ticaret Karar Destek Sistemi</p>
           </div>
           <div className="system-status">
-            <span className="dot"></span> Sistem Çevrimiçi
+            <span className="dot"></span> <span className="status-text">Sistem Çevrimiçi</span>
           </div>
         </header>
 
-        {/* 1. SATIR: KPI Kartları */}
+        {/* 1. SATIR: KPI Kartları - Mobilde 1 veya 2 sütun olacak şekilde CSS'te ayarlanmalı */}
         <section className="kpi-grid">
           <KpiCard title="Toplam Gelir" value={`₺${data?.kpis?.total_revenue?.toLocaleString('tr-TR')}`} color="#6366f1" icon="💰" />
           <KpiCard title="Sipariş Sayısı" value={data?.kpis?.total_orders?.toLocaleString('tr-TR')} color="#10b981" icon="📦" />
@@ -63,48 +62,52 @@ function App() {
         <section className="charts-main-row">
           <div className="glass-card main-chart">
             <h3>Aylık Satış Trendi</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <LineChart data={data?.trend}>
-                <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
-                <XAxis dataKey="name" axisLine={false} tickLine={false} />
-                <YAxis hide />
-                <Tooltip 
-                  formatter={(value) => [`₺${value.toLocaleString('tr-TR')}`, 'Gelir']}
-                  contentStyle={{borderRadius: '15px', border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.05)'}} 
-                />
-                <Line 
-                  type="monotone" 
-                  dataKey="value" 
-                  stroke="#6366f1" 
-                  strokeWidth={4} 
-                  dot={{ r: 4, fill: '#6366f1', strokeWidth: 2, stroke: '#fff' }} 
-                  activeDot={{ r: 8 }}
-                />
-              </LineChart>
-            </ResponsiveContainer>
+            <div style={{ width: '100%', height: 300 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <LineChart data={data?.trend}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                  <XAxis dataKey="name" axisLine={false} tickLine={false} tick={{fontSize: 12}} />
+                  <YAxis hide />
+                  <Tooltip 
+                    formatter={(value) => [`₺${value.toLocaleString('tr-TR')}`, 'Gelir']}
+                    contentStyle={{borderRadius: '15px', border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.05)'}} 
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="value" 
+                    stroke="#6366f1" 
+                    strokeWidth={4} 
+                    dot={{ r: 4, fill: '#6366f1', strokeWidth: 2, stroke: '#fff' }} 
+                    activeDot={{ r: 8 }}
+                  />
+                </LineChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           <div className="glass-card side-chart">
             <h3>Kategori Dağılımı</h3>
-            <ResponsiveContainer width="100%" height={300}>
-              <PieChart>
-                <Pie 
-                  data={data?.categories} 
-                  dataKey="value" 
-                  nameKey="name" 
-                  cx="50%" cy="50%" 
-                  innerRadius={60} 
-                  outerRadius={85} 
-                  paddingAngle={8}
-                >
-                  {data?.categories?.map((entry, index) => (
-                    <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-                  ))}
-                </Pie>
-                <Tooltip formatter={(value) => [value, 'Sipariş Sayısı']} />
-                <Legend verticalAlign="bottom" iconType="circle" />
-              </PieChart>
-            </ResponsiveContainer>
+            <div style={{ width: '100%', height: 300 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <Pie 
+                    data={data?.categories} 
+                    dataKey="value" 
+                    nameKey="name" 
+                    cx="50%" cy="50%" 
+                    innerRadius="50%" 
+                    outerRadius="80%" 
+                    paddingAngle={8}
+                  >
+                    {data?.categories?.map((entry, index) => (
+                      <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                    ))}
+                  </Pie>
+                  <Tooltip formatter={(value) => [value, 'Sipariş Sayısı']} />
+                  <Legend verticalAlign="bottom" iconType="circle" wrapperStyle={{fontSize: '12px'}} />
+                </PieChart>
+              </ResponsiveContainer>
+            </div>
           </div>
         </section>
 
@@ -112,14 +115,16 @@ function App() {
         <section className="charts-detail-row">
           <div className="glass-card">
             <h3>En Çok Satan 5 Ürün</h3>
-            <ResponsiveContainer width="100%" height={350}>
-              <BarChart data={data?.top_products} layout="vertical" margin={{left: 20}}>
-                <XAxis type="number" hide />
-                <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} style={{fontSize: '12px', fontWeight: '500'}} width={100} />
-                <Tooltip cursor={{fill: 'transparent'}} formatter={(value) => [value, 'Satış Adedi']} />
-                <Bar dataKey="value" fill="#6366f1" radius={[0, 10, 10, 0]} barSize={18} />
-              </BarChart>
-            </ResponsiveContainer>
+            <div style={{ width: '100%', height: 350 }}>
+              <ResponsiveContainer width="100%" height="100%">
+                <BarChart data={data?.top_products} layout="vertical" margin={{left: 0, right: 20}}>
+                  <XAxis type="number" hide />
+                  <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} style={{fontSize: '11px', fontWeight: '500'}} width={80} />
+                  <Tooltip cursor={{fill: 'transparent'}} formatter={(value) => [value, 'Satış Adedi']} />
+                  <Bar dataKey="value" fill="#6366f1" radius={[0, 10, 10, 0]} barSize={18} />
+                </BarChart>
+              </ResponsiveContainer>
+            </div>
           </div>
 
           <div className="glass-card table-card">
@@ -129,7 +134,7 @@ function App() {
                 <thead>
                   <tr>
                     <th>Müşteri</th>
-                    <th>Ürün</th>
+                    <th className="hide-mobile">Ürün</th>
                     <th className="text-right">Tutar</th>
                   </tr>
                 </thead>
@@ -137,7 +142,7 @@ function App() {
                   {data?.recent?.map((order, i) => (
                     <tr key={i}>
                       <td className="customer-cell">{order.customer}</td>
-                      <td className="product-cell">{order.product}</td>
+                      <td className="product-cell hide-mobile">{order.product}</td>
                       <td className="text-right amount-cell">₺{order.amount.toLocaleString('tr-TR')}</td>
                     </tr>
                   ))}
@@ -150,10 +155,10 @@ function App() {
         {/* Protected by Volkan Ağbal İmza Alanı */}
         <footer className="dashboard-footer">
           <div className="footer-content">
-             <p>InsightFlow Karar Destek Sistemi v1.0 | Toplam {data?.kpis?.total_orders} İşlem İncelendi</p>
+             <p className="footer-text">v1.0 | {data?.kpis?.total_orders} İşlem</p>
              <div className="protection-stamp">
                 <span className="shield-icon">🛡️</span>
-                <span>System Secured & Protected by <strong>Volkan Ağbal</strong></span>
+                <span><strong>Volkan Ağbal</strong></span>
              </div>
           </div>
         </footer>
