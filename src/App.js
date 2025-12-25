@@ -6,7 +6,8 @@ import {
 } from 'recharts';
 import './App.css';
 
-const API_BASE_URL = 'https://insightflowkdsbackend.onrender.com/api';
+// DÜZELTME: Render'ın atadığı hatalı yazımlı (insgiht) canlı URL buraya eklendi
+const API_BASE_URL = 'https://insgihtflowkdsbackend.onrender.com/api';
 const COLORS = ['#6366f1', '#10b981', '#f59e0b', '#ef4444', '#8b5cf6'];
 
 function App() {
@@ -67,7 +68,6 @@ function App() {
                 <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                 <XAxis dataKey="name" axisLine={false} tickLine={false} />
                 <YAxis hide />
-                {/* DÜZENLEME: Tooltip Türkçeleştirildi */}
                 <Tooltip 
                   formatter={(value) => [`₺${value.toLocaleString('tr-TR')}`, 'Gelir']}
                   contentStyle={{borderRadius: '15px', border: 'none', boxShadow: '0 10px 25px rgba(0,0,0,0.05)'}} 
@@ -101,7 +101,6 @@ function App() {
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
-                {/* DÜZENLEME: Tooltip Türkçeleştirildi */}
                 <Tooltip formatter={(value) => [value, 'Sipariş Sayısı']} />
                 <Legend verticalAlign="bottom" iconType="circle" />
               </PieChart>
@@ -117,7 +116,6 @@ function App() {
               <BarChart data={data?.top_products} layout="vertical" margin={{left: 20}}>
                 <XAxis type="number" hide />
                 <YAxis dataKey="name" type="category" axisLine={false} tickLine={false} style={{fontSize: '12px', fontWeight: '500'}} width={100} />
-                {/* DÜZENLEME: Tooltip Türkçeleştirildi */}
                 <Tooltip cursor={{fill: 'transparent'}} formatter={(value) => [value, 'Satış Adedi']} />
                 <Bar dataKey="value" fill="#6366f1" radius={[0, 10, 10, 0]} barSize={18} />
               </BarChart>
@@ -149,7 +147,7 @@ function App() {
           </div>
         </section>
 
-        {/* DÜZENLEME: Protected by Volkan Ağbal İmza Alanı */}
+        {/* Protected by Volkan Ağbal İmza Alanı */}
         <footer className="dashboard-footer">
           <div className="footer-content">
              <p>InsightFlow Karar Destek Sistemi v1.0 | Toplam {data?.kpis?.total_orders} İşlem İncelendi</p>
