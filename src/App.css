@@ -165,3 +165,77 @@ body {
   .kpi-grid { grid-template-columns: 1fr; }
   .nav-brand span { display: none; } /* Mobilde isim gizle logo kalsın */
 }
+/* --- LOGIN & REGISTER PAGE --- */
+.auth-page {
+  min-height: 100vh;
+  background-color: #f8fafc;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-image: radial-gradient(circle at 20% 20%, rgba(99, 102, 241, 0.05) 0%, transparent 50%);
+}
+
+.auth-card {
+  background: white;
+  padding: 40px;
+  border-radius: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.08);
+  width: 100%;
+  max-width: 420px;
+  text-align: center;
+  border: 1px solid #f1f5f9;
+}
+
+.auth-logo { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 35px; }
+.auth-logo h2 { font-weight: 800; font-size: 1.5rem; }
+.auth-logo h2 span { color: #6366f1; }
+
+.auth-form { display: flex; flex-direction: column; gap: 18px; }
+.auth-form h3 { font-weight: 800; color: #1e293b; margin-bottom: 5px; }
+.reg-desc { font-size: 14px; color: #64748b; margin-bottom: 10px; line-height: 1.5; }
+
+.auth-form input {
+  padding: 14px 18px;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 14px;
+  font-family: inherit;
+  font-size: 15px;
+  transition: all 0.3s;
+}
+
+.auth-form input:focus {
+  outline: none;
+  border-color: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+}
+
+.input-group { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.login-btn-full, .register-btn-full {
+  background: #6366f1;
+  color: white;
+  border: none;
+  padding: 16px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 10px 15px -3px rgba(99, 102, 241, 0.3);
+}
+
+.login-btn-full:hover, .register-btn-full:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.auth-footer { margin-top: 25px; font-size: 14px; color: #64748b; }
+.auth-footer span { color: #6366f1; font-weight: 700; cursor: pointer; text-decoration: underline; }
+
+.logout-btn {
+  background: #fee2e2 !important;
+  color: #ef4444 !important;
+  padding: 8px 16px !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+}
